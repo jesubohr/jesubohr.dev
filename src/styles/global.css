@@ -26,6 +26,38 @@ a:focus-visible {
   outline-offset: 4px;
 }
 
+.alert {
+  position: absolute;
+  top: 1rem;
+  left: 50%;
+  padding: 0.5rem 2rem;
+  background-color: #22c55e;
+  font-size: 1.5rem;
+  text-align: center;
+  transform: translateX(-50%);
+  z-index: 100;
+  animation: alert 0.5s ease-in-out;
+}
+.alert.error {
+  background-color: #d92626;
+}
+.alert.fade {
+  opacity: 0;
+  transform: translateX(-50%) translateY(-2rem);
+  transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+}
+
+@keyframes alert {
+  0% {
+    opacity: 0;
+    transform: translateX(-50%) translateY(-2rem);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+}
+
 @media screen and (max-width: 480px) {
   body {
     padding: 0.5rem;
