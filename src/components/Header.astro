@@ -1,25 +1,48 @@
 ---
-import HeaderLink from './HeaderLink.astro';
-import { SITE_TITLE } from '../config';
+import HeaderLink from "./HeaderLink.astro";
+import MenuIcon from "./MenuIcon.astro";
 ---
 
 <header>
-	<h2>
-		{SITE_TITLE}
-	</h2>
-	<nav>
-		<HeaderLink href="/">Home</HeaderLink>
-		<HeaderLink href="/blog">Blog</HeaderLink>
-		<HeaderLink href="/about">About</HeaderLink>
-		<HeaderLink href="https://twitter.com/astrodotbuild" target="_blank">Twitter</HeaderLink>
-		<HeaderLink href="https://github.com/withastro/astro" target="_blank">GitHub</HeaderLink>
-	</nav>
+  <button class="menu-button block xs:hidden p-2.5">
+    <MenuIcon />
+  </button>
+  <nav class="hidden xs:flex xs:relative xs:left-0 xs:flex-row xs:border-0">
+    <HeaderLink href="/">Home</HeaderLink>
+    <HeaderLink href="/about">About</HeaderLink>
+    <HeaderLink href="/projects">Projects</HeaderLink>
+    <HeaderLink href="/contact">Contact</HeaderLink>
+  </nav>
 </header>
+
+<script>
+  const toggleMenu = () => {
+    const menu = document.querySelector("nav")!;
+    menu.classList.toggle("hidden");
+  };
+
+  const button = document.querySelector(".menu-button")!;
+  button.addEventListener("click", toggleMenu);
+</script>
+
 <style>
-	header {
-		margin: 0em 0 2em;
-	}
-	h2 {
-		margin: 0.5em 0;
-	}
+  header {
+    position: relative;
+    display: flex;
+    width: 100%;
+    border: solid #199400;
+    border-width: 1px 1px 0;
+  }
+
+  nav {
+    position: absolute;
+    top: calc(100% + 5px);
+    left: 5px;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    width: calc(100% - 10px);
+    background-color: #222;
+    border: 1px solid #199400;
+  }
 </style>
