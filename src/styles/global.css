@@ -26,17 +26,11 @@ a:focus-visible {
   outline-offset: 4px;
 }
 
-@media screen and (max-width: 768px) {
-  body {
-    padding: 1rem;
-  }
-  main {
-    padding-inline: 2rem;
-  }
-}
-
 @media screen and (max-width: 480px) {
   body {
     padding: 0.5rem;
+  }
+  main {
+    padding-inline: 1rem;
   }
 }
