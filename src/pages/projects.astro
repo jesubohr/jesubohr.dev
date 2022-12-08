@@ -1,0 +1,128 @@
+---
+import Page from "../layouts/Page.astro";
+import AnchorButton from "../components/AnchorButton.astro";
+
+type Project = {
+  name: string;
+  description: string;
+  image: string;
+  webp: string;
+  link: string;
+  repository?: string;
+};
+const PROJECTS = [
+  {
+    name: "Scales2Care",
+    description:
+      "A PWA to help health professionals to apply certain risk scales on hospitalized patients.",
+    image: "/projects/scales2care.png",
+    webp: "/projects/scales2care.webp",
+    link: "https://scales2care.live",
+    repository: "https://github.com/jesubohr/scales2care",
+  },
+  {
+    name: "Color Palette",
+    description:
+      "Simple app that allows users to create color palettes and share them.",
+    image: "/projects/colorPalette.png",
+    webp: "/projects/colorPalette.webp",
+    link: "https://palettio-color.surge.sh",
+  },
+  {
+    name: "Todoist",
+    description: "An app that allows you to create, check and delete tasks.",
+    image: "/projects/todoist.png",
+    webp: "/projects/todoist.webp",
+    link: "https://todoist-planner.surge.sh",
+    repository: "https://github.com/jesubohr/ToDoist",
+  },
+];
+---
+
+<Page title="Projects">
+  <div class="flex flex-wrap justify-between gap-5">
+    <div class="flex flex-wrap xlg:grid xlg:grid-cols-2 gap-6 h-fit">
+      {
+        PROJECTS.map((project: Project) => (
+          <div class="project-thumb">
+            <picture class="w-full aspect-square">
+              <source srcset={project.webp} type="image/webp" />
+              <img
+                class="w-full aspect-square"
+                src={project.image}
+                alt={project.name}
+              />
+            </picture>
+            <template>
+              <div class="project-content">
+                <h2 class="text-4xl text-green-400">{project.name}</h2>
+                <p class="max-w-[30ch] text-2xl">{project.description}</p>
+                <div class="flex flex-wrap gap-5 mt-5">
+                  {project.repository && (
+                    <AnchorButton href={project.repository} text="Repository" />
+                  )}
+                  <AnchorButton href={project.link} text="Demo" />
+                </div>
+              </div>
+            </template>
+          </div>
+        ))
+      }
+    </div>
+    <div class="project-view flex flex-wrap items-start gap-10">
+      <div
+        id="project-img"
+        class="p-2 max-w-[24rem] w-full aspect-square border-2 border-green-500"
+      >
+      </div>
+    </div>
+  </div>
+</Page>
+
+<style>
+  .project-thumb {
+    padding: 0.25rem;
+    width: 5rem;
+    aspect-ratio: 1 / 1;
+    border: 2px solid #199400;
+    cursor: pointer;
+  }
+</style>
+
+<script>
+  const projectView = document.querySelector(".project-view")!;
+  const projectsThumbs = document.querySelectorAll(".project-thumb");
+
+  projectsThumbs.forEach((thumb) => {
+    thumb.addEventListener("click", () => {
+      const projectImg = thumb.querySelector("img")!;
+      const projectContent = thumb
+        .querySelector("template")!
+        .cloneNode(true) as HTMLTemplateElement;
+
+      projectView.querySelector("#project-img")!.innerHTML =
+        projectImg.outerHTML;
+
+      cleanContainer(projectView);
+      projectView.appendChild(projectContent.content);
+    });
+  });
+
+  window.addEventListener("load", () => {
+    const firstThumb = projectsThumbs[0];
+    const firstImg = firstThumb.querySelector("img")!;
+    const firstContent = firstThumb
+      .querySelector("template")!
+      .cloneNode(true) as HTMLTemplateElement;
+
+    projectView.querySelector("#project-img")!.innerHTML = firstImg.outerHTML;
+    projectView.appendChild(firstContent.content);
+  });
+
+  function cleanContainer(container: Element) {
+    const contents = container.querySelectorAll(".project-content");
+    contents.forEach((content) => {
+      content.remove();
+    });
+  }
+</script>
