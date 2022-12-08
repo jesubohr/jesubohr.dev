@@ -7,6 +7,6 @@ import react from "@astrojs/react";
 import tailwind from "@astrojs/tailwind";
 
 export default defineConfig({
-  site: 'https://example.com',
+  site: 'https://jesubohr-dev.vercel.app/',
   integrations: [mdx(), sitemap(), react(), tailwind()]
 });
