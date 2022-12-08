@@ -1,0 +1,27 @@
+---
+import BaseHead from "../components/BaseHead.astro";
+import Header from "../components/Header.astro";
+import { SITE_TITLE, SITE_DESCRIPTION } from "../config";
+
+const { title, description } = Astro.props;
+---
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <BaseHead
+      title={SITE_TITLE + (title ? ` - ${title}` : "")}
+      description={description ? description : SITE_DESCRIPTION}
+    />
+  </head>
+
+  <body>
+    <Header />
+    <main>
+      <div class="grow mx-auto max-w-5xl w-full">
+        {title && <h1 class="mb-2 text-left text-5xl text-green-500">{title}</h1>}
+        <slot />
+      </div>
+    </main>
+  </body>
+</html>
