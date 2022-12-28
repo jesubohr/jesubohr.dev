@@ -1,5 +1,6 @@
 ---
-import HeaderLink from "./HeaderLink.astro";
+// import HeaderLink from "./HeaderLink.astro";
+import { HeaderLink } from "./HeaderLink";
 import MenuIcon from "./MenuIcon.astro";
 ---
 
@@ -8,10 +9,10 @@ import MenuIcon from "./MenuIcon.astro";
     <MenuIcon />
   </button>
   <nav class="hidden xs:flex xs:relative xs:left-0 xs:flex-row xs:border-0">
-    <HeaderLink href="/">Home</HeaderLink>
-    <HeaderLink href="/about">About</HeaderLink>
-    <HeaderLink href="/projects">Projects</HeaderLink>
-    <HeaderLink href="/contact">Contact</HeaderLink>
+    <HeaderLink href="/" client:load>Home</HeaderLink>
+    <HeaderLink href="/about" client:load>About</HeaderLink>
+    <HeaderLink href="/projects" client:load>Projects</HeaderLink>
+    <HeaderLink href="/contact" client:load>Contact</HeaderLink>
   </nav>
 </header>
 
