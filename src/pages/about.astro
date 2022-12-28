@@ -1,23 +1,31 @@
 ---
-import Page from "../layouts/Page.astro";
+import Page from "../layouts/Page.astro"
 ---
 
 <Page title="About Me">
   <div class="flex flex-wrap justify-center xlg:justify-start gap-16">
     <p class="grow flex flex-col gap-3 xlg:max-w-md text-2xl">
-      <span>Frontend web developer, always learning and working on new projects.</span>
-      <span>Lorem ipsum dolor sit amet consectetur adipisicing elit.</span>
-      Temporibus maxime maiores perspiciatis tempora id blanditiis quidem aut deserunt ipsum dolor,
-      corrupti ratione vero quis accusantium consectetur labore sequi nulla numquam,
-      incidunt repellat aliquid fugiat.
+      <span>Frontend Web Developer, passionate about technology and programming.</span>
+      <span>Proficient in frontend web development technologies, tools and frameworks.</span>
+      <span>Focused on providing valueable solutions to problems. Enjoy working on productive
+      and colaborative teams, forming good relationships with my co-workers, while
+      mainting respect and empathy.</span>
+      <em>"First solve the problem, then write the code"</em>
     </p>
     <div class="relative w-96">
       <div class="absolute inset-0 bg-green-600/30"></div>
       <picture class="w-full aspect-square">
         <source srcset="/profile.webp" type="image/webp" />
-        <img class="w-full aspect-square" src="/profile.jpg" alt="Photo of Jesus Borrero" />
+        <img
+          class="w-full aspect-square"
+          src="/profile.jpg"
+          alt="Photo of Jesus Borrero"
+        />
       </picture>
-      <div class="hidden xs:block absolute -bottom-[5%] -right-[5%] w-full aspect-square border-4 border-green-600 -z-10"></div>
+      <div
+        class="hidden xs:block absolute -bottom-[5%] -right-[5%] w-full aspect-square border-4 border-green-600 -z-10"
+      >
+      </div>
     </div>
   </div>
 </Page>
