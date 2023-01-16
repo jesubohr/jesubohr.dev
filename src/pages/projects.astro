@@ -103,29 +103,28 @@ const PROJECTS = [
 
   projectsThumbs.forEach((thumb) => {
     thumb.addEventListener("click", () => {
-      const projectImg = thumb.querySelector("img")!;
-      const projectContent = thumb
-        .querySelector("template")!
-        .cloneNode(true) as HTMLTemplateElement;
-
-      projectView.querySelector("#project-img")!.innerHTML =
-        projectImg.outerHTML;
-
+      const projectContent = setProject(thumb);
       cleanContainer(projectView);
       projectView.appendChild(projectContent.content);
     });
   });
 
   window.addEventListener("load", () => {
-    const firstThumb = projectsThumbs[0];
-    const firstImg = firstThumb.querySelector("img")!;
-    const firstContent = firstThumb
+    const projectContent = setProject(projectsThumbs[0]);
+    projectView.appendChild(projectContent.content);
+  });
+
+  function setProject(projectThumb: Element) {
+    const projectImg = projectThumb.querySelector("img")!;
+    const projectContent = projectThumb
       .querySelector("template")!
       .cloneNode(true) as HTMLTemplateElement;
 
-    projectView.querySelector("#project-img")!.innerHTML = firstImg.outerHTML;
-    projectView.appendChild(firstContent.content);
-  });
+    projectView.querySelector("#project-img")!.innerHTML =
+      projectImg.outerHTML;
+
+    return projectContent
+  }
 
   function cleanContainer(container: Element) {
     const contents = container.querySelectorAll(".project-content");
