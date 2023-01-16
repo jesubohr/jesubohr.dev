@@ -13,7 +13,7 @@ main {
   flex-direction: column;
   flex-grow: 1;
   padding-block: 2rem;
-  padding-inline: 3rem;
+  padding-inline: 2rem;
   border: 1px solid #2FB600;
 }
 

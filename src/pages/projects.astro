@@ -1,50 +1,55 @@
 ---
-import Page from "../layouts/Page.astro";
-import AnchorButton from "../components/AnchorButton.astro";
+import Page from "../layouts/Page.astro"
+import AnchorButton from "../components/AnchorButton.astro"
 
 type Project = {
-  name: string;
-  description: string;
-  image: string;
-  webp: string;
-  link: string;
-  repository?: string;
-};
-const PROJECTS = [
+  name: string
+  description: string
+  image: string
+  webp: string
+  screenshot: string
+  link: string
+  repository?: string
+}
+const PROJECTS: Project[] = [
   {
     name: "Scales2Care",
     description:
       "A PWA to help health professionals to apply certain risk scales on hospitalized patients.",
     image: "/projects/scales2care.png",
     webp: "/projects/scales2care.webp",
+    screenshot: "/projects/screenshots/scales2care.jpeg",
     link: "https://scales2care.live",
-    repository: "https://github.com/jesubohr/scales2care",
+    repository: "https://github.com/jesubohr/scales2care"
   },
   {
     name: "Color Palette",
     description:
       "Simple app that allows users to create color palettes and share them.",
-    image: "/projects/colorPalette.png",
-    webp: "/projects/colorPalette.webp",
-    link: "https://palettio-color.surge.sh",
+    image: "/projects/palettio.png",
+    webp: "/projects/palettio.webp",
+    screenshot: "/projects/screenshots/palettio.jpeg",
+    link: "https://palettio-color.surge.sh"
   },
   {
     name: "Todoist",
     description: "An app that allows you to create, check and delete tasks.",
     image: "/projects/todoist.png",
     webp: "/projects/todoist.webp",
+    screenshot: "/projects/screenshots/todoist.jpeg",
     link: "https://todoist-planner.surge.sh",
-    repository: "https://github.com/jesubohr/ToDoist",
+    repository: "https://github.com/jesubohr/ToDoist"
   },
   {
     name: "GenPass",
     description: "A secure password generator.",
     image: "/projects/genpass.png",
     webp: "/projects/genpass.webp",
+    screenshot: "/projects/screenshots/genpass.jpeg",
     link: "https://altgenpass.vercel.app/",
-    repository: "https://github.com/jesubohr/GenPass",
-  },
-];
+    repository: "https://github.com/jesubohr/GenPass"
+  }
+]
 ---
 
 <Page title="Projects">
@@ -62,6 +67,16 @@ const PROJECTS = [
               />
             </picture>
             <template>
+              <div
+                id="project-img"
+                class="p-2 max-w-[24rem] w-full aspect-square border-2 border-green-500"
+              >
+                <img
+                  class="w-full aspect-square"
+                  src={project.screenshot}
+                  alt={project.name}
+                />
+              </div>
               <div class="project-content">
                 <h2 class="text-4xl text-green-400">{project.name}</h2>
                 <p class="max-w-[30ch] text-2xl">{project.description}</p>
@@ -77,13 +92,7 @@ const PROJECTS = [
         ))
       }
     </div>
-    <div class="project-view flex flex-wrap items-start gap-10">
-      <div
-        id="project-img"
-        class="p-2 max-w-[24rem] w-full aspect-square border-2 border-green-500"
-      >
-      </div>
-    </div>
+    <div class="project-view flex flex-wrap items-start gap-10"></div>
   </div>
 </Page>
 
@@ -98,38 +107,34 @@ const PROJECTS = [
 </style>
 
 <script>
-  const projectView = document.querySelector(".project-view")!;
-  const projectsThumbs = document.querySelectorAll(".project-thumb");
+  const projectView = document.querySelector(".project-view")!
+  const projectsThumbs = document.querySelectorAll(".project-thumb")
 
   projectsThumbs.forEach((thumb) => {
     thumb.addEventListener("click", () => {
-      const projectContent = setProject(thumb);
-      cleanContainer(projectView);
-      projectView.appendChild(projectContent.content);
-    });
-  });
+      const projectContent = setProject(thumb)
+      cleanContainer(projectView)
+      projectView.appendChild(projectContent.content)
+    })
+  })
 
   window.addEventListener("load", () => {
-    const projectContent = setProject(projectsThumbs[0]);
-    projectView.appendChild(projectContent.content);
-  });
+    const projectContent = setProject(projectsThumbs[0])
+    projectView.appendChild(projectContent.content)
+  })
 
   function setProject(projectThumb: Element) {
-    const projectImg = projectThumb.querySelector("img")!;
     const projectContent = projectThumb
       .querySelector("template")!
-      .cloneNode(true) as HTMLTemplateElement;
-
-    projectView.querySelector("#project-img")!.innerHTML =
-      projectImg.outerHTML;
+      .cloneNode(true) as HTMLTemplateElement
 
     return projectContent
   }
 
   function cleanContainer(container: Element) {
-    const contents = container.querySelectorAll(".project-content");
-    contents.forEach((content) => {
-      content.remove();
-    });
+    const image = container.querySelector("#project-img")
+    const content = container.querySelector(".project-content")
+    image?.remove()
+    content?.remove()
   }
 </script>
