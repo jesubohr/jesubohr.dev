@@ -17,6 +17,7 @@ import SocialLink from "../components/SocialLink.astro";
             name="message"
             id="message"
             cols="50"
+            rows="3"
             placeholder="How can I help you?"></textarea>
         </label>
         <button class="submit" type="submit">Send</button>
@@ -97,33 +98,32 @@ import SocialLink from "../components/SocialLink.astro";
 
 <script>
   const form = document.querySelector("form")!;
-  form.addEventListener("submit", (e) => {
+  form.addEventListener("submit", async (e) => {
     e.preventDefault();
     const formData = new FormData(form);
     const data = Object.fromEntries(formData);
 
-    mockFetch("/api/contact", {
+    const response = await mockFetch("/api/contact", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify(data),
     })
-      .then((res) => res.json())
-      .then((data) => {
-        const { status, message } = data;
-        if (status === 200) {
-          form.reset();
-          createAlert(message);
-        } else throw new Error(message);
-      })
-      .catch((err) => createAlert(err.message, "error"));
+    if (!response.ok) return createAlert(response.statusText, "error");
+
+    const { status, message } = await response.json();
+    if (status === 200) {
+      form.reset();
+      createAlert(message);
+    } else throw new Error(message);
   });
 
   function mockFetch(url: string, options: any): Promise<any> {
     return new Promise((resolve, _) => {
       setTimeout(() => {
         resolve({
+          ok: true,
           json: () =>
             Promise.resolve({
               status: 200,

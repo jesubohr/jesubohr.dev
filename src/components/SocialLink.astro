@@ -12,8 +12,8 @@ const { href, icon, text } = Astro.props as Props;
 <a
   href={href}
   target="_blank"
-  class="flex items-center gap-3 text-4xl text-green-200"
+  class="group flex items-center gap-3 text-4xl text-green-200"
 >
   <Icon icon={icon} />
-  <span class="text-green-400 hover:underline">{text}</span>
+  <span class="text-green-400 group-hover:underline">{text}</span>
 </a>
