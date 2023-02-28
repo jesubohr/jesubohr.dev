@@ -1,18 +1,17 @@
 ---
-// import HeaderLink from "./HeaderLink.astro";
-import { HeaderLink } from "./HeaderLink";
-import MenuIcon from "./MenuIcon.astro";
+import HeaderLink from "./HeaderLink.astro";
+import MenuIcon from "@components/MenuIcon.astro";
 ---
 
-<header>
+<header class="relative flex w-full border-t border-x border-primary">
   <button class="menu-button block xs:hidden p-2.5">
     <MenuIcon />
   </button>
   <nav class="hidden xs:flex xs:relative xs:left-0 xs:flex-row xs:border-0">
-    <HeaderLink href="/" client:load>Home</HeaderLink>
-    <HeaderLink href="/about" client:load>About</HeaderLink>
-    <HeaderLink href="/projects" client:load>Projects</HeaderLink>
-    <HeaderLink href="/contact" client:load>Contact</HeaderLink>
+    <HeaderLink href="/">Home</HeaderLink>
+    <HeaderLink href="/about">About</HeaderLink>
+    <HeaderLink href="/projects">Projects</HeaderLink>
+    <HeaderLink href="/contact">Contact</HeaderLink>
   </nav>
 </header>
 
@@ -27,14 +26,6 @@ import MenuIcon from "./MenuIcon.astro";
 </script>
 
 <style>
-  header {
-    position: relative;
-    display: flex;
-    width: 100%;
-    border: solid #199400;
-    border-width: 1px 1px 0;
-  }
-
   nav {
     position: absolute;
     top: calc(100% + 5px);
