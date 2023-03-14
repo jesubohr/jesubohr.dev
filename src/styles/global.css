@@ -1,3 +1,20 @@
+::-webkit-scrollbar {
+  width: 0.5rem;
+  height: 0.5rem;
+}
+
+::-webkit-scrollbar-track {
+  background: #222;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #2FB600;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #22c55e;
+}
+
 body {
   display: flex;
   flex-direction: column;
