@@ -18,6 +18,16 @@ const { title, description, image = "/profile.jpg" } = Astro.props;
 <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 <meta name="generator" content={Astro.generator} />
 
+<!-- Preconnect to Google Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link
+  rel="preconnect"
+  href="https://fonts.gstatic.com"
+  crossorigin
+/>
+<link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet">
+
+
 <!-- Primary Meta Tags -->
 <title>{title}</title>
 <meta name="title" content={title} />
@@ -36,12 +46,3 @@ const { title, description, image = "/profile.jpg" } = Astro.props;
 <meta property="twitter:title" content={title} />
 <meta property="twitter:description" content={description} />
 <meta property="twitter:image" content={new URL(image, Astro.url)} />
-
-<link rel="preconnect" href="https://fonts.googleapis.com" /><link
-  rel="preconnect"
-  href="https://fonts.gstatic.com"
-  crossorigin
-/><link
-  href="https://fonts.googleapis.com/css2?family=VT323&display=swap"
-  rel="stylesheet"
-/>

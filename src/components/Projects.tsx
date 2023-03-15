@@ -54,8 +54,8 @@ export function Projects({ projects }: ProjectsProps) {
           />
         </div>
         <div className="project-content">
-          <h2 className="text-4xl text-green-400">{currentProject.name}</h2>
-          <p className="max-w-[30ch] text-2xl">{currentProject.description}</p>
+          <h2 className="mb-2 text-4xl text-green-400">{currentProject.name}</h2>
+          <p className="max-w-[30ch] text-xl">{currentProject.description}</p>
           <div className="flex flex-wrap gap-5 mt-5">
             {currentProject.repository && (
               <AnchorButton
