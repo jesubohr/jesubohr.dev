@@ -7,7 +7,7 @@ module.exports = {
         'primary': '#199400',
       },
       screens: {
-        'xs': '460px',
+        'xs': '554px',
         'xlg': '1127px'
       }
     },

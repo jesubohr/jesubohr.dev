@@ -1,13 +1,19 @@
 ---
-import HeaderLink from "./HeaderLink.astro";
-import MenuIcon from "@components/MenuIcon.astro";
+import HeaderLink from './HeaderLink.astro'
+import MenuIcon from '@components/MenuIcon.astro'
 ---
 
-<header class="fixed top-2 inset-x-2 xs:inset-x-8 flex border border-primary z-10">
-  <button class="menu-button block xs:hidden p-2.5">
+<header
+  class="fixed top-2 inset-x-2 xs:inset-x-8 flex bg-[#222] border border-primary z-10"
+>
+  <button
+    type="button"
+    title="Toggle Menu"
+    class="menu-button block xs:hidden p-2.5"
+  >
     <MenuIcon />
   </button>
-  <nav class="hidden xs:flex xs:relative xs:left-0 xs:flex-row xs:border-0">
+  <nav class="hidden absolute top-[calc(100%+5px)] left-1 bg-[#222] border border-primary xs:flex xs:relative xs:left-0 xs:flex-row xs:grow xs:border-0">
     <HeaderLink href="/">Home</HeaderLink>
     <HeaderLink href="/about">About</HeaderLink>
     <HeaderLink href="/projects">Projects</HeaderLink>
@@ -17,24 +23,10 @@ import MenuIcon from "@components/MenuIcon.astro";
 
 <script>
   const toggleMenu = () => {
-    const menu = document.querySelector("nav")!;
-    menu.classList.toggle("hidden");
-  };
-
-  const button = document.querySelector(".menu-button")!;
-  button.addEventListener("click", toggleMenu);
-</script>
-
-<style>
-  nav {
-    position: absolute;
-    top: calc(100% + 5px);
-    left: 5px;
-    display: flex;
-    flex-direction: column;
-    flex-grow: 1;
-    width: calc(100% - 10px);
-    background-color: #222;
-    border: 1px solid #199400;
+    const menu = document.querySelector('nav')!
+    menu.classList.toggle('hidden')
   }
-</style>
+
+  const button = document.querySelector('.menu-button')!
+  button.addEventListener('click', toggleMenu)
+</script>
