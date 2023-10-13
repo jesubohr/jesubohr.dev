@@ -6,7 +6,7 @@ export const PROJECTS: Project[] = [
     description: "An app that allows you to create, check and delete tasks.",
     image: "/projects/todoist.webp",
     screenshot: "/projects/screenshots/todoist.jpeg",
-    link: "https://todoist-planner.surge.sh",
+    link: "https://todoist.jesubohrdev.com",
     repository: "https://github.com/jesubohr/ToDoist"
   },
   {
