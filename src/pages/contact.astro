@@ -14,18 +14,32 @@ import SocialLink from "../components/SocialLink.astro"
             name="name"
             id="name"
             class="py-2 px-3 bg-transparent border-2 border-[#2cc55e] text-xl placeholder:text-green-100/80 focus:outline-[3px] focus:outline-dashed focus:outline-[#22c55e] outline-offset-[3px]"
-            placeholder="Your Name"
+            placeholder="e.g. John Doe"
+          />
+        </label>
+        <label for="email" class="flex flex-col gap-1 w-full text-2xl"
+          ><span>Email<span style="color: #d22;">*</span></span>
+          <input
+            type="email"
+            name="email"
+            id="email"
+            class="py-2 px-3 bg-transparent border-2 border-[#2cc55e] text-xl placeholder:text-green-100/80 focus:outline-[3px] focus:outline-dashed focus:outline-[#22c55e] outline-offset-[3px]"
+            placeholder="e.g. johndoe@example.com"
+            pattern="[a-z0-9]+@[a-z0-9]+\.[a-z]{2,4}$"
+            required
           />
         </label>
         <label for="message" class="flex flex-col gap-1 w-full text-2xl"
-          >Message
+          ><span>Message<span style="color: #d22;">*</span></span>
           <textarea
             name="message"
             id="message"
             cols="10"
             rows="3"
             class="py-2 px-3 w-full bg-transparent border-2 border-[#2cc55e] text-xl resize-none placeholder:text-green-100/80 focus:outline-[3px] focus:outline-dashed focus:outline-[#22c55e] outline-offset-[3px]"
-            placeholder="How can I help you?"></textarea>
+            placeholder="How can I help you?"
+            required
+          />
         </label>
         <button
           type="submit"
@@ -63,36 +77,23 @@ import SocialLink from "../components/SocialLink.astro"
     const formData = new FormData(form)
     const data = Object.fromEntries(formData)
 
-    const response = await mockFetch("/api/contact", {
+    const response = await fetch("/api/send-email.json", {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
       },
       body: JSON.stringify(data)
     })
-    if (!response.ok) return createAlert(response.statusText, "error")
+    console.log(response)
+    if (!response.ok) {
+      if (response.status === 500) return createAlert("Something went wrong. Please try again", "error")
+      return createAlert(response.statusText, "error")
+    }
 
-    const { status, message } = await response.json()
-    if (status === 200) {
-      form.reset()
-      createAlert(message)
-    } else throw new Error(message)
+    const { message } = await response.json()
+    createAlert(message)
+    form.reset()
   })
-
-  function mockFetch(url: string, options: any): Promise<any> {
-    return new Promise((resolve, _) => {
-      setTimeout(() => {
-        resolve({
-          ok: true,
-          json: () =>
-            Promise.resolve({
-              status: 200,
-              message: "Message sent successfully"
-            })
-        })
-      }, Math.round(Math.random() * 1500))
-    })
-  }
 
   function createAlert(message: string, type = "success") {
     const alert = document.createElement("div")

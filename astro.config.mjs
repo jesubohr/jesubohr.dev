@@ -8,5 +8,6 @@ import tailwind from "@astrojs/tailwind";
 
 export default defineConfig({
   site: 'https://jesubohr-dev.vercel.app/',
+  output: 'server',
   integrations: [mdx(), sitemap(), react(), tailwind()]
 });
