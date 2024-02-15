@@ -38,8 +38,7 @@ import SocialLink from "../components/SocialLink.astro"
             rows="3"
             class="py-2 px-3 w-full bg-transparent border-2 border-[#2cc55e] text-xl resize-none placeholder:text-green-100/80 focus:outline-[3px] focus:outline-dashed focus:outline-[#22c55e] outline-offset-[3px]"
             placeholder="How can I help you?"
-            required
-          />
+            required></textarea>
         </label>
         <button
           type="submit"
@@ -86,7 +85,8 @@ import SocialLink from "../components/SocialLink.astro"
     })
     console.log(response)
     if (!response.ok) {
-      if (response.status === 500) return createAlert("Something went wrong. Please try again", "error")
+      if (response.status === 500)
+        return createAlert("Something went wrong. Please try again", "error")
       return createAlert(response.statusText, "error")
     }
 

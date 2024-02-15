@@ -15,9 +15,12 @@ export const post: APIRoute = async ({ request }) => {
 
     // Validate input
     if (!email || !message) {
-      return new Response(JSON.stringify({ message: "Must provide email and message!" }), {
-        status: 400
-      })
+      return new Response(
+        JSON.stringify({ message: "Must provide email and message!" }),
+        {
+          status: 400
+        }
+      )
     }
 
     if (!validEmailRegex.test(email)) {
@@ -61,7 +64,11 @@ export const post: APIRoute = async ({ request }) => {
   return new Response(null, { status: 400 })
 }
 
-async function sendEmail(senderName: string, senderEmail: string, message: string) {
+async function sendEmail(
+  senderName: string,
+  senderEmail: string,
+  message: string
+) {
   const transporter = createTransport({
     host: "smtp.jesubohrdev.com",
     port: 587,

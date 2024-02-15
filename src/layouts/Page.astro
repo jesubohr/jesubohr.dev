@@ -1,16 +1,16 @@
 ---
-import BaseHead from "@components/Header/BaseHead.astro";
-import Header from "@components/Header/Header.astro";
-import { SITE_TITLE, SITE_DESCRIPTION } from "../config";
+import BaseHead from "@components/Header/BaseHead.astro"
+import Header from "@components/Header/Header.astro"
+import { SITE_TITLE, SITE_DESCRIPTION } from "../config"
 
 export interface Props {
-  title?: string;
-  description?: string;
+  title?: string
+  description?: string
 }
-const { title, description } = Astro.props as Props;
+const { title, description } = Astro.props as Props
 ---
 
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <BaseHead
@@ -23,7 +23,11 @@ const { title, description } = Astro.props as Props;
     <Header />
     <main>
       <div class="grow mx-auto max-w-5xl w-full">
-        {title && <h1 class="mb-4 text-left text-5xl text-green-500">{title}</h1>}
+        {
+          title && (
+            <h1 class="mb-4 text-left text-5xl text-green-500">{title}</h1>
+          )
+        }
         <slot />
       </div>
     </main>
