@@ -1,16 +1,12 @@
-import mdx from '@astrojs/mdx';
-import sitemap from '@astrojs/sitemap';
-import { defineConfig } from 'astro/config';
+import { defineConfig } from "astro/config"
+import react from "@astrojs/react"
+import sitemap from "@astrojs/sitemap"
+import tailwind from "@astrojs/tailwind"
+import vercel from "@astrojs/vercel/serverless"
 
-// https://astro.build/config
-import react from "@astrojs/react";
-import tailwind from "@astrojs/tailwind";
-import vercel from "@astrojs/vercel/serverless";
-
-// https://astro.build/config
 export default defineConfig({
-  site: 'https://jesubohr-dev.vercel.app/',
-  output: 'server',
-  integrations: [mdx(), sitemap(), react(), tailwind()],
-  adapter: vercel()
-});
+  site: "https://me.jesubohrdev.com/",
+  output: "server",
+  adapter: vercel(),
+  integrations: [sitemap(), react(), tailwind()],
+})
