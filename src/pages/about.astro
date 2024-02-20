@@ -1,33 +1,59 @@
 ---
 import Page from "../layouts/Page.astro"
+import { basics, about } from "portfolio.json"
+const { name, pictures, pictureFallback } = basics
+
+const mappedPictures = pictures
+  ? pictures.map((picture) => {
+      const type = picture.split(".").pop()
+      return {
+        src: picture,
+        type: `image/${type}`
+      }
+    })
+  : null
+
+const splittedAbout = about.split(".")
 ---
 
 <Page title="About Me">
   <div class="flex flex-wrap justify-center xlg:justify-start gap-16">
     <p class="grow flex flex-col gap-3 xlg:max-w-md text-xl">
-      <span
-        >Software Developer, passionate about technology and programming.</span
-      >
-      <span
-        >Proficient in web development technologies, tools and methodologies, as
-        Git/GitHub, CI/CD, SOLID, etc.</span
-      >
-      <span
-        >Focused on providing valuable solutions to problems. Enjoy working on
-        productive and collaborative teams, making good relationships with my
-        co-workers, while keeping respect and empathy.</span
-      >
-      <em>"First solve the problem, then write the code"</em>
+      {
+        splittedAbout.map((paragraph) => {
+          const quoted = paragraph.split("'")
+          if (paragraph === "") return <br />
+          if (quoted.length > 1)
+            return (
+              <span>
+                {quoted[0]}
+                <em class="italic">"{quoted[1]}"</em>
+                {quoted[2]}.
+              </span>
+            )
+          return <span>{paragraph}.</span>
+        })
+      }
     </p>
-    <div class="relative w-96">
+    <div class="relative w-96 h-96">
       <div class="absolute inset-0 bg-green-700/30"></div>
       <picture class="w-full aspect-square">
-        <source srcset="/profile.webp" type="image/webp" />
-        <img
-          class="w-full aspect-square"
-          src="/profile-1.jpg"
-          alt="Photo of Jesus Borrero"
-        />
+        {
+          mappedPictures
+            ? mappedPictures.map((picture) => (
+                <source srcset={picture.src} type={picture.type} />
+              ))
+            : null
+        }
+        {
+          pictureFallback ? (
+            <img
+              class="w-full aspect-square"
+              src={pictureFallback}
+              alt={`Photo of ${name}`}
+            />
+          ) : null
+        }
       </picture>
       <div
         class="hidden xs:block absolute -bottom-[5%] -right-[5%] w-full aspect-square border-4 border-green-600 -z-10"

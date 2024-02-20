@@ -1,20 +1,18 @@
 ---
 import Page from "../layouts/Page.astro"
 import AnchorButton from "../components/AnchorButton.astro"
+import { basics } from "portfolio.json"
+const { name, label, summary, resume } = basics
 ---
 
 <Page>
   <div class="mx-auto pt-14 w-fit text-left">
     <p class="ml-0.5 text-2xl">Hi, my name is</p>
-    <h1 class="-ml-3 text-8xl text-green-500 font-medium">Jesús Borrero</h1>
-    <p class="-ml-1.5 text-6xl text-green-200/80">I build things for the web</p>
-    <p class="mt-4 max-w-2xl text-2xl">
-      Software developer working on great digital experiences. I'm a passionate
-      developer who loves to learn new things and share my knowledge with
-      others.
-    </p>
+    <h1 class="-ml-3 text-8xl text-green-500 font-medium">{name}</h1>
+    <p class="-ml-1.5 text-6xl text-green-200/80">{label}</p>
+    <p class="mt-4 max-w-2xl text-2xl">{summary}</p>
     <div class="flex gap-5 mt-5">
-      <AnchorButton text="Resume" href="" />
+      <AnchorButton text="Resume" href={resume} />
     </div>
   </div>
 </Page>

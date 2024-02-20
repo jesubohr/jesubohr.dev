@@ -1,11 +1,11 @@
 ---
 import Page from "@layouts/Page.astro"
 import { ProjectList } from "@components/Projects"
-import { PROJECTS } from "../lib/projects"
+import { projects } from "portfolio.json"
 ---
 
 <Page title="Projects">
   <div class="flex flex-wrap justify-between gap-5">
-    <Projects projects={PROJECTS} client:visible />
+    <ProjectList projects={projects} client:visible />
   </div>
 </Page>
